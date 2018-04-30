@@ -1,0 +1,26 @@
+@import 'header';
+@import 'footer';
+@import 'tracklist';
+@import 'icons';
+@import 'artist';
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.container {
+  height: 100vh;
+  overflow: auto;
+  transition: all 0.75s;
+  opacity: 1;
+  position: relative;
+  background-image: linear-gradient(-180deg, #0b92ef 0%, #00d2be 100%);
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: 200;
+}
