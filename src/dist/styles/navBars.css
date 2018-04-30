@@ -7,22 +7,20 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background: #5b89b1;
+  background: #333;
   padding: 15px;
-  box-shadow: 2px 0px 3px 1px #85b7e2f2; }
+  box-shadow: 2px 0px 3px 3px #ffc0cb8f; }
   .header .logo,
   .header .brandName {
     float: left; }
   .header .logo {
-    width: 20px; }
+    width: 30px; }
     .header .logo .logoBtm,
     .header .logo .logoTop {
       position: relative;
       width: 100%; }
     .header .logo .logoBtm {
-      top: -10px; }
-  .header .topMenuIcon {
-    float: right; }
+      margin-top: -10px; }
   .header .brandName {
     font-size: 16px;
     color: white;

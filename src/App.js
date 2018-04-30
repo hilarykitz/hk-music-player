@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
+import { Header } from './Header';
+import { Footer } from './Footer';
 import { Welcome } from './Welcome';
+import { MyMusic } from './MyMusic';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import style from './dist/styles/main.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      entered: false
-    };
-  }
-
-  enter = () => {
-    this.setState({ entered: !this.state.entered });
-  };
-
   render() {
-    const { entered } = this.state;
     return (
-      <div>
-        <header className="header">
-          <h1 />
-        </header>
-        <Welcome entered={entered} enter={this.enter} />
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <main className="container">
+            <Route exact path="/" component={Welcome} />
+            <Route path="/myMusic" component={MyMusic} />
+            <Footer />
+          </main>
+        </div>
+      </Router>
     );
   }
 }

@@ -1,0 +1,8 @@
+.slideDown {
+  position: fixed;
+  top: -100%;
+  opacity: 0; }
+
+.slideDown-enter {
+  top: 0;
+  opacity: 1; }
