@@ -1,0 +1,33 @@
+.mainSplash .logo {
+  margin: auto auto;
+  width: 90px;
+  height: auto;
+  position: relative; }
+  .mainSplash .logo .logoBtm,
+  .mainSplash .logo .logoTop {
+    width: 100%;
+    margin: 0 auto; }
+  .mainSplash .logo .logoBtm {
+    margin-top: -30px; }
+
+.mainSplash .enterLink {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  margin: -5px 0 5px;
+  font-size: 18px;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  height: 0px;
+  opacity: 0;
+  animation: 'expandIn' 1600ms ease-out forwards; }
+
+@keyframes 'expandIn' {
+  60% {
+    height: 0px; }
+  90% {
+    opacity: 0; }
+  100% {
+    opacity: 1;
+    height: 52px; } }

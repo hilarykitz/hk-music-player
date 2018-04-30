@@ -1,0 +1,40 @@
+@import 'colors';
+
+$headerHeight: 60px;
+
+.headerWrap-enter {
+  opacity: 0.5;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $headerHeight;
+  background: #5b89b1;
+  padding: 15px;
+  box-shadow: 2px 0px 3px 1px #85b7e2f2;
+  .logo,
+  .brandName {
+    float: left;
+  }
+  .logo {
+    width: 20px;
+    .logoBtm,
+    .logoTop {
+      position: relative;
+      width: 100%;
+    }
+    .logoBtm {
+      top: -10px;
+    }
+  }
+  .topMenuIcon {
+    float: right;
+  }
+  .brandName {
+    font-size: 16px;
+    color: white;
+    padding: 0 15px;
+  }
+}
