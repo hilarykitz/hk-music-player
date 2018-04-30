@@ -1,0 +1,20 @@
+@import 'colors';
+@import 'header';
+@import 'logo';
+@import 'fonts';
+
+$bodyHeight: calc(100vh - 50px);
+.body {
+  padding-top: $headerHeight;
+  height: $bodyHeight;
+  overflow: auto;
+  transition: opacity 0.5s;
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.body--pink {
+  background: $pink;
+}

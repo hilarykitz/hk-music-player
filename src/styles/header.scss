@@ -1,0 +1,19 @@
+@import 'colors';
+
+$headerHeight: 50px;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $headerHeight;
+  background: $pink;
+
+  .title {
+    color: white;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+  }
+}

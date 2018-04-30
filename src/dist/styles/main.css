@@ -1,0 +1,52 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: #ffe8e8; }
+  .header .title {
+    color: white;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center; }
+
+.logo {
+  margin: 0 auto;
+  width: 80px;
+  height: 100px;
+  position: relative;
+  transition: all 0.5s ease-out; }
+  .logo.showSignIn {
+    transform: scale(10);
+    opacity: 0; }
+    .logo.showSignIn .logoBtm {
+      top: 120px; }
+
+.logoBtm,
+.logoTop {
+  width: 100%;
+  position: absolute;
+  margin: 0 auto; }
+
+.logoBtm {
+  top: 26px; }
+
+.link-text--white {
+  padding: 15px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  display: block; }
+
+.body {
+  padding-top: 50px;
+  height: calc(100vh - 50px);
+  overflow: auto;
+  transition: opacity 0.5s;
+  opacity: 1; }
+  .body.hidden {
+    opacity: 0; }
+
+.body--pink {
+  background: #ffe8e8; }
