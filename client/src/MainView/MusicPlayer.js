@@ -124,19 +124,19 @@ class MusicPlayer extends Component {
             size={34}
             onClick={this.resetAudio}
           />
-
-          <MdPause
-            opacity={isPlaying ? 1 : 0.5}
-            size={34}
-            onClick={() => pauseTrack()}
-          />
-
-          <MdPlayCircleFilled
-            opacity={isPlaying || !src ? 0.5 : 1}
-            onClick={() => playTrack(currentTrack)}
-            size={40}
-          />
-
+          {isPlaying ? (
+            <MdPause
+              opacity={isPlaying ? 1 : 0.5}
+              size={34}
+              onClick={() => pauseTrack()}
+            />
+          ) : (
+            <MdPlayCircleFilled
+              opacity={isPlaying || !src ? 0.5 : 1}
+              onClick={() => playTrack(currentTrack)}
+              size={40}
+            />
+          )}
           <MdStop
             opacity={isPlaying ? 1 : 0.5}
             size={40}
