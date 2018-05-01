@@ -1,37 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { playTrack, pauseTrack } from '../redux/player.duck';
 import MdPlayCircleFilled from 'react-icons/lib/md/play-circle-filled';
 import MdPauseCircleFilled from 'react-icons/lib/md/pause-circle-filled';
 import MdFavorite from 'react-icons/lib/md/favorite';
+
+const trackTitle = ({ title, artist, year }) => (
+  <span className="trackTitle">
+    {title} - {artist} <small>({year})</small>
+  </span>
+);
 
 class Tracklisting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favourite: false,
-      playing: false
+      favourite: false
     };
   }
 
-  render() {
-    const { track, playTrack } = this.props;
-    const { favourite, playing } = this.state;
-    const { title, artist, year } = track;
+  togglePlay = (track, currentTrack) => {
+    return this.props.isPlaying && currentTrack
+      ? this.props.pauseTrack()
+      : this.props.playTrack(track);
+  };
 
+  render() {
+    const { track, currentTrack, isPlaying } = this.props;
+    const { favourite } = this.state;
+    const isCurrentTrack = currentTrack === track;
     return (
       <div className="track">
-        <span
-          onClick={() => (
-            playTrack(track), this.setState({ playing: !playing })
-          )}>
-          {playing ? (
+        <span onClick={() => this.togglePlay(track, isCurrentTrack)}>
+          {isCurrentTrack && isPlaying ? (
             <MdPauseCircleFilled color="white" size={20} />
           ) : (
             <MdPlayCircleFilled color="rgba(255, 255, 255, 0.5)" size={20} />
           )}
-
-          <span className="trackTitle">
-            {title} - {artist} <small>({year})</small>
-          </span>
+          {trackTitle(track)}
         </span>
         <div
           className="iconRight"
@@ -43,4 +49,20 @@ class Tracklisting extends React.Component {
   }
 }
 
-export default Tracklisting;
+const mapDispatchToProps = dispatch => {
+  return {
+    playTrack: track => {
+      dispatch(playTrack(track));
+    },
+    pauseTrack: () => {
+      dispatch(pauseTrack());
+    }
+  };
+};
+
+const mapStateToProps = ({ playerReducer }) => ({
+  currentTrack: playerReducer.currentTrack,
+  isPlaying: playerReducer.isPlaying
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tracklisting);

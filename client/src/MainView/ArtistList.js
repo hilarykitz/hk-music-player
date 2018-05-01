@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Tracklist } from './Tracklist';
 
 class Artist extends Component {
@@ -10,7 +11,7 @@ class Artist extends Component {
   }
 
   render() {
-    const { playTrack, artist } = this.props;
+    const { artist } = this.props;
     const { image, name, tracks } = artist;
     const { showTracks } = this.state;
 
@@ -29,7 +30,7 @@ class Artist extends Component {
         </div>
         {showTracks && (
           <div className={'accordionInner'}>
-            <Tracklist tracks={tracks} playTrack={playTrack} />
+            <Tracklist tracks={tracks} />
           </div>
         )}
       </Fragment>
@@ -37,12 +38,13 @@ class Artist extends Component {
   }
 }
 
-export const ArtistList = ({ artists = [], playTrack }) => {
-  return (
-    <div className="artistList">
-      {artists.map((artist, i) => (
-        <Artist key={i} artist={artist} playTrack={playTrack} />
-      ))}
-    </div>
-  );
-};
+const ArtistList = ({ artists = [] }) => (
+  <div className="artistList">
+    {artists.map((artist, i) => <Artist key={i} artist={artist} />)}
+  </div>
+);
+
+const mapStateToProps = ({ playerReducer }) => ({
+  artists: playerReducer.artists
+});
+export default connect(mapStateToProps, null)(ArtistList);

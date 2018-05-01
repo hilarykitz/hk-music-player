@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { playTrack, pauseTrack, stopTrack } from '../redux/player.duck';
 import MdPlayCircleFilled from 'react-icons/lib/md/play-circle-filled';
+import MdFastRewind from 'react-icons/lib/md/fast-rewind';
 import MdPause from 'react-icons/lib/md/pause';
 import MdStop from 'react-icons/lib/md/stop';
 
-const makeTimestamp = seconds => {
-  var minutes = Math.floor(seconds / 60);
-  var seconds = (seconds % 60).toFixed(0);
+const makeTimestamp = (secs = 0) => {
+  if (!secs) {
+    return '0:00';
+  }
+  var minutes = Math.floor(secs / 60);
+  var seconds = (secs % 60).toFixed(0);
   return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 };
 
@@ -14,28 +20,28 @@ class MusicPlayer extends Component {
     super(props);
 
     this.state = {
-      duration: null,
-      playing: false,
-      currentSong: props.currentSong
+      duration: null
     };
   }
 
-  playAudio = () => {
+  playAudio = currentTrack => {
     this.audio.play();
-    this.setState({ playing: true });
   };
 
   pauseAudio = () => {
-    this.audio.pause();
-    this.setState({ playing: false });
+    this.audio && this.audio.pause();
+  };
+
+  resetAudio = () => {
+    this.audio.currentTime = 0;
+    this.slider.value = 0;
+    clearInterval(this.currentTimeInterval);
   };
 
   stopAudio = () => {
-    this.audio.currentTime = 0;
-    this.slider.value = 0;
     this.audio.pause();
-    clearInterval(this.currentTimeInterval);
-    this.setState({ playing: false });
+    this.props.stopTrack();
+    this.resetAudio();
   };
 
   componentDidMount() {
@@ -67,19 +73,19 @@ class MusicPlayer extends Component {
     clearInterval(this.currentTimeInterval);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentSong !== this.state.currentSong) {
-      this.stopAudio();
-      this.setState({ currentSong: nextProps.currentSong }, () => {
-        this.playAudio();
-      });
-    }
-  }
-
   render() {
-    const { duration, playing, currentSong } = this.state;
-    const { src, title } = currentSong;
+    const { duration } = this.state;
+    const { currentTrack, isPlaying, pauseTrack, playTrack } = this.props;
+    const { src, title } = currentTrack;
+    const shouldPlay = isPlaying && src;
     const songSrc = `http://localhost:5000/songs?song=${src}`;
+
+    if (shouldPlay) {
+      this.playAudio(currentTrack);
+    }
+    if (!isPlaying) {
+      this.pauseAudio();
+    }
 
     return (
       <div className="musicPlayer">
@@ -102,6 +108,7 @@ class MusicPlayer extends Component {
         <div>
           <input
             className="slider"
+            style={{ opacity: shouldPlay ? '1' : '0.5' }}
             ref={slider => {
               this.slider = slider;
             }}
@@ -112,18 +119,26 @@ class MusicPlayer extends Component {
           />
         </div>
         <div>
-          <MdPause
-            opacity={playing ? 1 : 0.5}
+          <MdFastRewind
+            opacity={src ? 1 : 0.5}
             size={34}
-            onClick={this.pauseAudio}
+            onClick={this.resetAudio}
           />
+
+          <MdPause
+            opacity={isPlaying ? 1 : 0.5}
+            size={34}
+            onClick={() => pauseTrack()}
+          />
+
           <MdPlayCircleFilled
-            opacity={playing ? 0.5 : 1}
-            onClick={this.playAudio}
+            opacity={isPlaying || !src ? 0.5 : 1}
+            onClick={() => playTrack(currentTrack)}
             size={40}
           />
+
           <MdStop
-            opacity={playing ? 1 : 0.5}
+            opacity={isPlaying ? 1 : 0.5}
             size={40}
             onClick={this.stopAudio}
           />
@@ -133,4 +148,22 @@ class MusicPlayer extends Component {
   }
 }
 
-export default MusicPlayer;
+const mapDispatchToProps = dispatch => {
+  return {
+    playTrack: track => {
+      dispatch(playTrack(track));
+    },
+    pauseTrack: () => {
+      dispatch(pauseTrack());
+    },
+    stopTrack: () => {
+      dispatch(stopTrack());
+    }
+  };
+};
+
+const mapStateToProps = ({ playerReducer }) => ({
+  currentTrack: playerReducer.currentTrack,
+  isPlaying: playerReducer.isPlaying
+});
+export default connect(mapStateToProps, mapDispatchToProps)(MusicPlayer);
