@@ -94,7 +94,7 @@ class MusicPlayer extends Component {
           ref={audio => {
             this.audio = audio;
           }}
-          src={songSrc}
+          src={src ? songSrc : ''}
         />
         <p style={{ margin: 0 }}>
           <input
@@ -118,7 +118,7 @@ class MusicPlayer extends Component {
             max={duration}
           />
         </div>
-        <div>
+        <div style={{ padding: '10px 0' }}>
           <MdFastRewind
             opacity={src ? 1 : 0.5}
             size={34}
