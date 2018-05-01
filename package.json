@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "nodemon server.js",
+    "server": "nodemon server.js --exec babel-node --presets es2015,stage-2",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

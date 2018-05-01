@@ -1,0 +1,32 @@
+.musicPlayer {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: $footerHeight;
+  background: #04bbd0;
+  color: white;
+  input {
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .slider {
+    width: 100%;
+    background: white;
+    height: 2px;
+  }
+
+  .timeLeft {
+    font-size: 13px;
+    margin: 0;
+  }
+  .nowPlaying {
+    margin: 15px 15px 0px;
+  }
+}
