@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
+    "build-client": "cd client && yarn",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev":
+      "yarn build-client && concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

@@ -9,7 +9,7 @@
   }
   .track {
     width: 100%;
-    padding: 10px 15px;
+    padding: 10px 20px;
     background: rgba(0, 0, 0, 0.2);
     margin: 2px 0;
     cursor: pointer;
@@ -36,4 +36,8 @@
   svg {
     margin: 15px;
   }
+}
+
+.iconRight {
+  float: right;
 }
