@@ -1,25 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MdSettings from 'react-icons/lib/md/settings';
 import MdRadio from 'react-icons/lib/md/radio';
-import MdHome from 'react-icons/lib/md/home';
+import MdFavorite from 'react-icons/lib/md/favorite';
 export const Footer = () => (
   <footer className="footer">
     <ul>
       <li>
-        <Link to="/">
-          <MdHome size={26} />
-        </Link>
+        <MdFavorite size={26} />
       </li>
       <li>
-        <Link to="/player">
-          <MdRadio size={26} />
-        </Link>
+        <MdRadio size={26} />
       </li>
       <li>
-        <Link to="/settings">
-          <MdSettings size={26} />
-        </Link>
+        <MdSettings size={26} />
       </li>
     </ul>
   </footer>

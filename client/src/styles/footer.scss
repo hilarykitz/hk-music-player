@@ -1,8 +1,10 @@
+$footerHeight: 60px;
 .footer {
   position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
+  height: $footerHeight;
   border-top: 2px white solid;
 
   ul {

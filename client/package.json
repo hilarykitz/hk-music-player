@@ -21,8 +21,10 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.3.2",
     "react-icons": "^2.2.7",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2"
