@@ -10,3 +10,5 @@ To run locally:
 
 * First time: `yarn` => `cd client` => `yarn` => `cd ..` => `yarn dev`
 * Next time: `yarn dev`
+
+* Open http://localhost:3000/
